@@ -40,8 +40,51 @@ if (app.Environment.IsDevelopment())
 app.UseCors("CORSPolicy");
 app.UseHttpsRedirection();
 
-app.MapGet("/get-all-contacts", async () => await ContactsRepository.GetContactsAsync());
+app.MapGet("/get-all-contacts", async () => await ContactsRepository.GetContactsAsync()).WithTags("Get Contacts");
+
+app.MapGet("/get-contact-by-id/{ContactId}", async (int contactId) =>
+{
+    Contact contact = await ContactsRepository.GetContactByIdAsync(contactId);
+
+    if (contact != null)
+        return Results.Ok(contact);
+    else
+        return Results.BadRequest();
+
+}).WithTags("Get a contact By Id");
+
+app.MapPost("/create-contact", async (Contact contactToCreate) =>
+{
+    bool createSuccess = await ContactsRepository.CreateContactAsync(contactToCreate);
+
+    if (createSuccess)
+        return Results.Ok("Create Successful");
+    else
+        return Results.BadRequest();
+
+}).WithTags("Create a Contact");
+
+app.MapPut("/edit-contact", async (Contact contactToUpdate) =>
+{
+    bool updateSuccess = await ContactsRepository.UpdateContactAsync(contactToUpdate);
+
+    if (updateSuccess)
+        return Results.Ok("Update Successful");
+    else
+        return Results.BadRequest();
+
+}).WithTags("Update a Contact");
 
 
+app.MapPut("/delete-contact-by-id/{contactId}", async (int contactId) =>
+{
+    bool deleteSuccess = await ContactsRepository.DeletePostAsync(contactId);
+
+    if (deleteSuccess)
+        return Results.Ok("Delete Successful");
+    else
+        return Results.BadRequest();
+
+}).WithTags("Delete a Contact");
 
 app.Run();

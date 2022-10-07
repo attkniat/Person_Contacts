@@ -17,9 +17,9 @@ namespace PersonContacts.Data
                 contacts[i - 1] = new Contact
                 {
                     ContactId = i,
-                    PersonEmail = $"Email: {i}",
-                    PersonName = $"Esse nome: {i}",
-                    PersonPhone = "0000000000"
+                    PersonEmail = $"Email: DavidSmith{i}@gmail.com",
+                    PersonName = $"David Smith 0{i}",
+                    PersonPhone = $"{i}234567890"
                 };
             }
             modelBuilder.Entity<Contact>().HasData(contacts);

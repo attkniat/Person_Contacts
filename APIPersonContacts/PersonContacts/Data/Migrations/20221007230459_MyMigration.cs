@@ -26,27 +26,27 @@ namespace PersonContacts.Data.Migrations
             migrationBuilder.InsertData(
                 table: "Contacts",
                 columns: new[] { "ContactId", "PersonEmail", "PersonName", "PersonPhone" },
-                values: new object[] { 1, "Email: 1", "Esse nome: 1", "0000000000" });
+                values: new object[] { 1, "Email: DavidSmith1@gmail.com", "David Smith 01", "1234567890" });
 
             migrationBuilder.InsertData(
                 table: "Contacts",
                 columns: new[] { "ContactId", "PersonEmail", "PersonName", "PersonPhone" },
-                values: new object[] { 2, "Email: 2", "Esse nome: 2", "0000000000" });
+                values: new object[] { 2, "Email: DavidSmith2@gmail.com", "David Smith 02", "2234567890" });
 
             migrationBuilder.InsertData(
                 table: "Contacts",
                 columns: new[] { "ContactId", "PersonEmail", "PersonName", "PersonPhone" },
-                values: new object[] { 3, "Email: 3", "Esse nome: 3", "0000000000" });
+                values: new object[] { 3, "Email: DavidSmith3@gmail.com", "David Smith 03", "3234567890" });
 
             migrationBuilder.InsertData(
                 table: "Contacts",
                 columns: new[] { "ContactId", "PersonEmail", "PersonName", "PersonPhone" },
-                values: new object[] { 4, "Email: 4", "Esse nome: 4", "0000000000" });
+                values: new object[] { 4, "Email: DavidSmith4@gmail.com", "David Smith 04", "4234567890" });
 
             migrationBuilder.InsertData(
                 table: "Contacts",
                 columns: new[] { "ContactId", "PersonEmail", "PersonName", "PersonPhone" },
-                values: new object[] { 5, "Email: 5", "Esse nome: 5", "0000000000" });
+                values: new object[] { 5, "Email: DavidSmith5@gmail.com", "David Smith 05", "5234567890" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

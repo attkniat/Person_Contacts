@@ -44,37 +44,37 @@ namespace PersonContacts.Data.Migrations
                         new
                         {
                             ContactId = 1,
-                            PersonEmail = "Email: 1",
-                            PersonName = "Esse nome: 1",
-                            PersonPhone = "0000000000"
+                            PersonEmail = "Email: DavidSmith1@gmail.com",
+                            PersonName = "David Smith 01",
+                            PersonPhone = "1234567890"
                         },
                         new
                         {
                             ContactId = 2,
-                            PersonEmail = "Email: 2",
-                            PersonName = "Esse nome: 2",
-                            PersonPhone = "0000000000"
+                            PersonEmail = "Email: DavidSmith2@gmail.com",
+                            PersonName = "David Smith 02",
+                            PersonPhone = "2234567890"
                         },
                         new
                         {
                             ContactId = 3,
-                            PersonEmail = "Email: 3",
-                            PersonName = "Esse nome: 3",
-                            PersonPhone = "0000000000"
+                            PersonEmail = "Email: DavidSmith3@gmail.com",
+                            PersonName = "David Smith 03",
+                            PersonPhone = "3234567890"
                         },
                         new
                         {
                             ContactId = 4,
-                            PersonEmail = "Email: 4",
-                            PersonName = "Esse nome: 4",
-                            PersonPhone = "0000000000"
+                            PersonEmail = "Email: DavidSmith4@gmail.com",
+                            PersonName = "David Smith 04",
+                            PersonPhone = "4234567890"
                         },
                         new
                         {
                             ContactId = 5,
-                            PersonEmail = "Email: 5",
-                            PersonName = "Esse nome: 5",
-                            PersonPhone = "0000000000"
+                            PersonEmail = "Email: DavidSmith5@gmail.com",
+                            PersonName = "David Smith 05",
+                            PersonPhone = "5234567890"
                         });
                 });
 #pragma warning restore 612, 618
