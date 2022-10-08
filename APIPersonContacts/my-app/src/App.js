@@ -1,12 +1,12 @@
 import React, { useState } from "react";
+import Constants from "./Utilites/Constants";
 
 export default function App() {
 
   const [contacts, setContacts] = useState([]);
 
   function getContacts() {
-    //const url = Constants.API_URL_GET_ALL_POSTS;
-    const url = 'https://localhost:7168/get-all-contacts';
+    const url = Constants.API_URL_GET_ALL_CONTACTS;
 
     fetch(url, {
       method: 'GET'
@@ -21,6 +21,23 @@ export default function App() {
       });
   }
 
+  // function deleteContact(contactId) {
+  //   const url = `${Constants.API_URL_DELETE_CONTACT_BY_ID}/${contactId}`;
+
+  //   fetch(url, {
+  //     method: 'DELETE'
+  //   })
+  //     .then(response => response.json())
+  //     .then(responseFromServer => {
+  //       console.log(responseFromServer);
+  //       onContactDeleted(contactId);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //       alert(error);
+  //     });
+  // }
+
   return (
     <div className='container'>
       <div className='row min-vh-100'>
@@ -30,7 +47,7 @@ export default function App() {
             <div className="mt-5">
               <button onClick={getContacts} className='btn btn-dark btn-lg w-100'>Get all Contacts</button>
               <button onClick={getContacts} className='btn btn-secondary btn-lg w-100 mt-4'>New</button>
-              {/* <button onClick={() => setShowingCreateNewPostForm(true)} className="btn btn-secondary btn-lg w-100 mt-4">Create New Post</button> */}
+              {/* <button onClick={() => setShowingCreateNewPostForm(true)} className="btn btn-secondary btn-lg w-100 mt-4">New Contact</button> */}
             </div>
           </div>
           {contacts.length > 0 && renderContactsTable()}
@@ -61,7 +78,7 @@ export default function App() {
                 <td>{contact.personPhone}</td>
                 <td>
                   {/* <button onClick={() => setPostCurrentlyBeingUpdated(contact)} className="btn btn-dark btn-lg mx-3 my-3">Update</button> }
-                  <button onClick={() => { if (window.confirm(`Are you sure you want to delete the post titled "${contact.title}"?`)) deletePost(contact.contactId) }} className="btn btn-secondary btn-lg">Delete</button> */}
+                  <button onClick={() => { if (window.confirm(`Are you sure you want to delete the contact named "${contact.personPhone}"?`)) deletePost(contact.contactId) }} className="btn btn-secondary btn-lg">Delete</button> */}
                   <button className="btn btn-dark btn-lg mx-3 my-3">Update</button>
                   <button className="btn btn-secondary btn-lg">Delete</button>
                 </td>
@@ -75,3 +92,57 @@ export default function App() {
     );
   }
 }
+
+// function onContactCreated(createdContact) {
+//     // setShowingCreateNewContactForm(false);
+
+//     if (createdContact === null) {
+//       return;
+//     }
+
+//     alert(`Post successfully created. After clicking OK, your new Contact of "${createdContact.Name}" will show up in the table below.`);
+
+//     getContacts();
+//   }
+
+  // function onContactUpdated(updatedContact) {
+  //   setContactCurrentlyBeingUpdated(null);
+
+  //   if (updatedContact === null) {
+  //     return;
+  //   }
+
+  //   let contactsCopy = [...contacts];
+
+  //   const index = contactsCopy.findIndex((contactsCopyPost, currentIndex) => {
+  //     if (contactsCopyPost.postId === updatedContact.contactId) {
+  //       return true;
+  //     }
+  //   });
+
+  //   if (index !== -1) {
+  //     contactsCopy[index] = updatedContacts;
+  //   }
+
+  //   setContacts(contactsCopy);
+
+  //   alert(`Contact successfully updated. After clicking OK, look for the contact of the "${updatedContact.Name}" in the table below to see the updates.`);
+  // }
+
+  // function onContactDeleted(deletedContactId) {
+  //   let postsCopy = [...posts];
+
+  //   const index = postsCopy.findIndex((contactsCopyConts, currentIndex) => {
+  //     if (contactsCopyConts.postId === deletedContactId) {
+  //       return true;
+  //     }
+  //   });
+
+  //   if (index !== -1) {
+  //     contactsCopy.splice(index, 1);
+  //   }
+
+  //   setContacts(contactsCopyPostCopy);
+
+  //   alert('Contact successfully deleted. After clicking OK, look at the table below to see your contact disappear.');
+  // }
