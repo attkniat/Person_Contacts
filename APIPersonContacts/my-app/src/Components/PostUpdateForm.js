@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
 import Constants from '../Utilities/Constants'
 
-export default function ContactCreateForm(props) {
-        
+export default function ContactUpdateForm(props) {
+
     const initialFormData = Object.freeze({
-        Name: "Jack",
-        Email: "jack@gmail.com",
-        Phone: "1234567890"
+        ContactId: props.contact.contactId,
+        Name: props.contact.personName,
+        Email: props.contact.personEmail,
+        Phone: props.contact.personPhone
     });
-    
+
     const [formData, setFormData] = useState(initialFormData);
 
     const handleChange = (e) => {
@@ -21,21 +22,21 @@ export default function ContactCreateForm(props) {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const contactToCreate = {
-            contactId: 0,
+        const postToUpdate = {
+            contactId: props.contact.contactId,
             personName: formData.Name,
             personEmail: formData.Email,
             personPhone: formData.Phone
         };
 
-        const url = Constants.API_URL_CREATE_CONTACT;
+        const url = Constants.API_URL_UPDATE_CONTACT;
 
         fetch(url, {
-            method: 'POST',
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(contactToCreate)
+            body: JSON.stringify(contactToUpdate)
         })
             .then(response => response.json())
             .then(responseFromServer => {
@@ -46,30 +47,30 @@ export default function ContactCreateForm(props) {
                 alert(error);
             });
 
-        props.onContactCreated(contactToCreate);
+        props.onContactUpdated(contactToUpdate);
     };
 
     return (
-        <form className="w-50 px-5">
-            <h1 className="mt-5">Create new Contact</h1>
+        <form className="w-100 px-5">
+            <h1 className="mt-5">Updating the contact of "{props.contact.personName}".</h1>
 
             <div className="mt-5">
                 <label className="h3 form-label">Name</label>
-                <input value={formData.Name} name="Name" type="text" className="form-control" onChange={handleChange} />
+                <input value={formData.personName} name="Name" type="text" className="form-control" onChange={handleChange} />
             </div>
 
-            <div className="mt-5">
+            <div className="mt-4">
                 <label className="h3 form-label">Email</label>
-                <input value={formData.Email} name="Email" type="text" className="form-control" onChange={handleChange} />
+                <input value={formData.personEmail} name="Email" type="text" className="form-control" onChange={handleChange} />
             </div>
 
-            <div className="mt-5">
+            <div className="mt-4">
                 <label className="h3 form-label">Phone</label>
-                <input value={formData.Phone} name="Phone" type="text" className="form-control" onChange={handleChange} />
+                <input value={formData.personPhone} name="Phone" type="text" className="form-control" onChange={handleChange} />
             </div>
 
             <button onClick={handleSubmit} className="btn btn-dark btn-lg w-100 mt-5">Submit</button>
-            <button onClick={() => props.onPostCreated(null)} className="btn btn-secondary btn-lg w-100 mt-3">Cancel</button>
+            <button onClick={() => props.onContactUpdated(null)} className="btn btn-secondary btn-lg w-100 mt-3">Cancel</button>
         </form>
     );
 }

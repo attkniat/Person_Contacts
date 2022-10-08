@@ -10,7 +10,7 @@ using PersonContacts.Context;
 namespace PersonContacts.Data.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20221008013201_MyMigration")]
+    [Migration("20221008034232_MyMigration")]
     partial class MyMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

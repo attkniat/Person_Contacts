@@ -53,7 +53,7 @@ export default function App() {
               </div>
             </div>
           )}
-          
+
           {(contacts.length > 0 && showingCreateNewContactForm === false) && renderContactsTable()}
 
           {showingCreateNewContactForm && <ContactCreateForm onContactCreated={onContactCreated} />}
@@ -104,8 +104,8 @@ export default function App() {
     if (createdContact === null) {
       return;
     }
-
-    alert(`Post successfully created. After clicking OK, your new Contact of "${createdContact.Name}" will show up in the table below.`);
+    debugger;
+    alert(`Post successfully created. After clicking OK, your new Contact of "${createdContact.personName}" will show up in the table below.`);
 
     getContacts();
   }
