@@ -18,7 +18,7 @@ namespace PersonContacts.Context
                 contacts[i - 1] = new Contact
                 {
                     ContactId = i,
-                    PersonEmail = $"Email: DavidSmith{i}@gmail.com",
+                    PersonEmail = $"DavidSmith{i}@gmail.com",
                     PersonName = $"David Smith 0{i}",
                     PersonPhone = $"{i}234567890"
                 };

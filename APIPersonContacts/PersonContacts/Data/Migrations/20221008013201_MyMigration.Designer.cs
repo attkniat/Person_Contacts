@@ -10,7 +10,7 @@ using PersonContacts.Context;
 namespace PersonContacts.Data.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20221007230459_MyMigration")]
+    [Migration("20221008013201_MyMigration")]
     partial class MyMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -18,7 +18,7 @@ namespace PersonContacts.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.9");
 
-            modelBuilder.Entity("PersonContacts.Data.Contact", b =>
+            modelBuilder.Entity("PersonContacts.Model.Contact", b =>
                 {
                     b.Property<int>("ContactId")
                         .ValueGeneratedOnAdd()
@@ -46,35 +46,35 @@ namespace PersonContacts.Data.Migrations
                         new
                         {
                             ContactId = 1,
-                            PersonEmail = "Email: DavidSmith1@gmail.com",
+                            PersonEmail = "DavidSmith1@gmail.com",
                             PersonName = "David Smith 01",
                             PersonPhone = "1234567890"
                         },
                         new
                         {
                             ContactId = 2,
-                            PersonEmail = "Email: DavidSmith2@gmail.com",
+                            PersonEmail = "DavidSmith2@gmail.com",
                             PersonName = "David Smith 02",
                             PersonPhone = "2234567890"
                         },
                         new
                         {
                             ContactId = 3,
-                            PersonEmail = "Email: DavidSmith3@gmail.com",
+                            PersonEmail = "DavidSmith3@gmail.com",
                             PersonName = "David Smith 03",
                             PersonPhone = "3234567890"
                         },
                         new
                         {
                             ContactId = 4,
-                            PersonEmail = "Email: DavidSmith4@gmail.com",
+                            PersonEmail = "DavidSmith4@gmail.com",
                             PersonName = "David Smith 04",
                             PersonPhone = "4234567890"
                         },
                         new
                         {
                             ContactId = 5,
-                            PersonEmail = "Email: DavidSmith5@gmail.com",
+                            PersonEmail = "DavidSmith5@gmail.com",
                             PersonName = "David Smith 05",
                             PersonPhone = "5234567890"
                         });
