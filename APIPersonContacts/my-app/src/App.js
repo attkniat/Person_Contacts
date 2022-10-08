@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import Constants from "./Utilites/Constants";
+import Constants from "./Utilities/Constants";
+import ContactCreateForm from "./Components/ContactCreateForm";
 
 export default function App() {
 
   const [contacts, setContacts] = useState([]);
+  const [showingCreateNewContactForm, setShowingCreateNewContactForm] = useState(false);
 
   function getContacts() {
     const url = Constants.API_URL_GET_ALL_CONTACTS;
@@ -42,15 +44,19 @@ export default function App() {
     <div className='container'>
       <div className='row min-vh-100'>
         <div className="col d-flex flex-column justify-content-center align-items-center">
-          <div>
-            <h1>Contacts Crud</h1>
-            <div className="mt-5">
-              <button onClick={getContacts} className='btn btn-dark btn-lg w-100'>Get all Contacts</button>
-              <button onClick={getContacts} className='btn btn-secondary btn-lg w-100 mt-4'>New</button>
-              {/* <button onClick={() => setShowingCreateNewPostForm(true)} className="btn btn-secondary btn-lg w-100 mt-4">New Contact</button> */}
+          {showingCreateNewContactForm === false && (
+            <div>
+              <h1>React Contacts Crud</h1>
+              <div className="mt-5">
+                <button onClick={getContacts} className='btn btn-dark btn-lg w-100'>Get all Contacts</button>
+                <button onClick={() => setShowingCreateNewContactForm(true)} className="btn btn-secondary btn-lg w-100 mt-4">New Contact</button>
+              </div>
             </div>
-          </div>
-          {contacts.length > 0 && renderContactsTable()}
+          )}
+          
+          {(contacts.length > 0 && showingCreateNewContactForm === false) && renderContactsTable()}
+
+          {showingCreateNewContactForm && <ContactCreateForm onContactCreated={onContactCreated} />}
         </div>
       </div>
     </div>
@@ -91,19 +97,19 @@ export default function App() {
       </div>
     );
   }
+
+  function onContactCreated(createdContact) {
+    setShowingCreateNewContactForm(false);
+
+    if (createdContact === null) {
+      return;
+    }
+
+    alert(`Post successfully created. After clicking OK, your new Contact of "${createdContact.Name}" will show up in the table below.`);
+
+    getContacts();
+  }
 }
-
-// function onContactCreated(createdContact) {
-//     // setShowingCreateNewContactForm(false);
-
-//     if (createdContact === null) {
-//       return;
-//     }
-
-//     alert(`Post successfully created. After clicking OK, your new Contact of "${createdContact.Name}" will show up in the table below.`);
-
-//     getContacts();
-//   }
 
   // function onContactUpdated(updatedContact) {
   //   setContactCurrentlyBeingUpdated(null);
