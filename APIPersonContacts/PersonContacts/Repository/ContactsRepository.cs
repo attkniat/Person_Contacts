@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PersonContacts.Data;
+using PersonContacts.Context;
+using PersonContacts.Model;
 
 namespace PersonContacts.Repository
 {

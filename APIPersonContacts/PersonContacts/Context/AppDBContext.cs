@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PersonContacts.Model;
 
 namespace PersonContacts.Context
 {
