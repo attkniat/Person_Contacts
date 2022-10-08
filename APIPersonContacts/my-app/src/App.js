@@ -25,22 +25,22 @@ export default function App() {
       });
   }
 
-  // function deleteContact(contactId) {
-  //   const url = `${Constants.API_URL_DELETE_CONTACT_BY_ID}/${contactId}`;
-
-  //   fetch(url, {
-  //     method: 'DELETE'
-  //   })
-  //     .then(response => response.json())
-  //     .then(responseFromServer => {
-  //       console.log(responseFromServer);
-  //       onContactDeleted(contactId);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //       alert(error);
-  //     });
-  // }
+  function deleteContact(contactId) {
+    const url = `${Constants.API_URL_DELETE_CONTACT_BY_ID}/${contactId}`;
+  debugger;
+    fetch(url, {
+      method: 'DELETE'
+    })
+      .then(response => response.json())
+      .then(responseFromServer => {
+        console.log(responseFromServer);
+        onContactDeleted(contactId);
+      })
+      .catch((error) => {
+        console.log(error);
+        alert(error);
+      });
+  }
 
   return (
     <div className='container'>
@@ -86,8 +86,7 @@ export default function App() {
                 <td>{contact.personPhone}</td>
                 <td>
                   <button onClick={() => setContactCurrentlyBeingUpdated(contact)} className="btn btn-dark btn-lg mx-3 my-3">Update</button>
-                  <button className="btn btn-secondary btn-lg">Delete</button>
-                  {/*<button onClick={() => { if (window.confirm(`Are you sure you want to delete the contact named "${contact.personPhone}"?`)) deletePost(contact.contactId) }} className="btn btn-secondary btn-lg">Delete</button> */}
+                  <button onClick={() => { if (window.confirm(`Are you sure you want to delete the contact named "${contact.personName}"?`)) deleteContact(contact.contactId) }} className="btn btn-secondary btn-lg">Delete</button>
                 </td>
               </tr>
             ))}
@@ -134,23 +133,22 @@ export default function App() {
 
     alert(`Contact successfully updated. After clicking OK, look for the contact of the "${updatedContact.personName}" in the table below to see the updates.`);
   }
+
+  function onContactDeleted(deletedContactId) {
+    let contractCopy = [...contacts];
+  
+    const index = contractCopy.findIndex((contactsCopyConts, currentIndex) => {
+      if (contactsCopyConts.postId === deletedContactId) {
+        return true;
+      }
+    });
+  
+    if (index !== -1) {
+      contractCopy.splice(index, 1);
+    }
+  
+    setContacts(contractCopy);
+  
+    alert('Contact successfully deleted. After clicking OK, look at the table below to see your contact disappear.');
+  }
 }
-
-
-  // function onContactDeleted(deletedContactId) {
-  //   let postsCopy = [...posts];
-
-  //   const index = postsCopy.findIndex((contactsCopyConts, currentIndex) => {
-  //     if (contactsCopyConts.postId === deletedContactId) {
-  //       return true;
-  //     }
-  //   });
-
-  //   if (index !== -1) {
-  //     contactsCopy.splice(index, 1);
-  //   }
-
-  //   setContacts(contactsCopyPostCopy);
-
-  //   alert('Contact successfully deleted. After clicking OK, look at the table below to see your contact disappear.');
-  // }

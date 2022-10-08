@@ -77,7 +77,7 @@ app.MapPut("/update-contact", async (Contact contactToUpdate) =>
 }).WithTags("Update a Contact");
 
 
-app.MapPut("/delete-contact-by-id/{contactId}", async (int contactId) =>
+app.MapDelete("/delete-contact-by-id/{contactId}", async (int contactId) =>
 {
     bool deleteSuccess = await ContactsRepository.DeletePostAsync(contactId);
 
