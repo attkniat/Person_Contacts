@@ -2,12 +2,11 @@ import React, { useState } from 'react'
 import Constants from '../Utilities/Constants'
 
 export default function ContactCreateForm(props) {
-    
-    
+        
     const initialFormData = Object.freeze({
-        name: "Jack",
-        email: "jack@gmail.com",
-        phone: "1234567890"
+        Name: "Jack",
+        Email: "jack@gmail.com",
+        Phone: "1234567890"
     });
     
     const [formData, setFormData] = useState(initialFormData);
@@ -55,18 +54,18 @@ export default function ContactCreateForm(props) {
             <h1 className="mt-5">Create new Contact</h1>
 
             <div className="mt-5">
-                <label className="h3 form-label">Contact Name</label>
-                <input value={formData.personName} name="Name" type="text" className="form-control" onChange={handleChange} />
+                <label className="h3 form-label">Name</label>
+                <input value={formData.Name} name="Name" type="text" className="form-control" onChange={handleChange} />
             </div>
 
             <div className="mt-5">
-                <label className="h3 form-label">Contact Email</label>
-                <input value={formData.personEmail} name="Email" type="text" className="form-control" onChange={handleChange} />
+                <label className="h3 form-label">Email</label>
+                <input value={formData.Email} name="Email" type="text" className="form-control" onChange={handleChange} />
             </div>
 
             <div className="mt-5">
-                <label className="h3 form-label">Contact Phone</label>
-                <input value={formData.personPhone} name="Phone" type="text" className="form-control" onChange={handleChange} />
+                <label className="h3 form-label">Phone</label>
+                <input value={formData.Phone} name="Phone" type="text" className="form-control" onChange={handleChange} />
             </div>
 
             <button onClick={handleSubmit} className="btn btn-dark btn-lg w-100 mt-5">Submit</button>
