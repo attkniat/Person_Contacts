@@ -22,7 +22,7 @@ export default function ContactUpdateForm(props) {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const postToUpdate = {
+        const contactToUpdate = {
             contactId: props.contact.contactId,
             personName: formData.Name,
             personEmail: formData.Email,
@@ -56,17 +56,17 @@ export default function ContactUpdateForm(props) {
 
             <div className="mt-5">
                 <label className="h3 form-label">Name</label>
-                <input value={formData.personName} name="Name" type="text" className="form-control" onChange={handleChange} />
+                <input value={formData.Name} name="Name" type="text" className="form-control" onChange={handleChange} />
             </div>
 
             <div className="mt-4">
                 <label className="h3 form-label">Email</label>
-                <input value={formData.personEmail} name="Email" type="text" className="form-control" onChange={handleChange} />
+                <input value={formData.Email} name="Email" type="text" className="form-control" onChange={handleChange} />
             </div>
 
             <div className="mt-4">
                 <label className="h3 form-label">Phone</label>
-                <input value={formData.personPhone} name="Phone" type="text" className="form-control" onChange={handleChange} />
+                <input value={formData.Phone} name="Phone" type="text" className="form-control" onChange={handleChange} />
             </div>
 
             <button onClick={handleSubmit} className="btn btn-dark btn-lg w-100 mt-5">Submit</button>

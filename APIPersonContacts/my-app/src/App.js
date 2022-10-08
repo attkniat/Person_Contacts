@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import Constants from "./Utilities/Constants";
 import ContactCreateForm from "./Components/ContactCreateForm";
+import ContactUpdateForm from "./Components/PostUpdateForm";
 
 export default function App() {
 
   const [contacts, setContacts] = useState([]);
   const [showingCreateNewContactForm, setShowingCreateNewContactForm] = useState(false);
+  const [contactCurrentlyBeingUpdated, setContactCurrentlyBeingUpdated] = useState(null);
 
   function getContacts() {
     const url = Constants.API_URL_GET_ALL_CONTACTS;
@@ -44,7 +46,7 @@ export default function App() {
     <div className='container'>
       <div className='row min-vh-100'>
         <div className="col d-flex flex-column justify-content-center align-items-center">
-          {showingCreateNewContactForm === false && (
+          {(showingCreateNewContactForm === false && contactCurrentlyBeingUpdated === null) && (
             <div>
               <h1>React Contacts Crud</h1>
               <div className="mt-5">
@@ -54,9 +56,9 @@ export default function App() {
             </div>
           )}
 
-          {(contacts.length > 0 && showingCreateNewContactForm === false) && renderContactsTable()}
-
+          {(contacts.length > 0 && showingCreateNewContactForm === false && contactCurrentlyBeingUpdated === null) && renderContactsTable()}
           {showingCreateNewContactForm && <ContactCreateForm onContactCreated={onContactCreated} />}
+          {contactCurrentlyBeingUpdated !== null && <ContactUpdateForm contact={contactCurrentlyBeingUpdated} onContactUpdated={onContactUpdated} />}
         </div>
       </div>
     </div>
@@ -83,10 +85,9 @@ export default function App() {
                 <td>{contact.personEmail}</td>
                 <td>{contact.personPhone}</td>
                 <td>
-                  {/* <button onClick={() => setPostCurrentlyBeingUpdated(contact)} className="btn btn-dark btn-lg mx-3 my-3">Update</button> }
-                  <button onClick={() => { if (window.confirm(`Are you sure you want to delete the contact named "${contact.personPhone}"?`)) deletePost(contact.contactId) }} className="btn btn-secondary btn-lg">Delete</button> */}
-                  <button className="btn btn-dark btn-lg mx-3 my-3">Update</button>
+                  <button onClick={() => setContactCurrentlyBeingUpdated(contact)} className="btn btn-dark btn-lg mx-3 my-3">Update</button>
                   <button className="btn btn-secondary btn-lg">Delete</button>
+                  {/*<button onClick={() => { if (window.confirm(`Are you sure you want to delete the contact named "${contact.personPhone}"?`)) deletePost(contact.contactId) }} className="btn btn-secondary btn-lg">Delete</button> */}
                 </td>
               </tr>
             ))}
@@ -109,31 +110,32 @@ export default function App() {
 
     getContacts();
   }
+
+  function onContactUpdated(updatedContact) {
+    setContactCurrentlyBeingUpdated(null);
+
+    if (updatedContact === null) {
+      return;
+    }
+
+    let contactsCopy = [...contacts];
+
+    const index = contactsCopy.findIndex((contactsCopyPost, currentIndex) => {
+      if (contactsCopyPost.postId === updatedContact.contactId) {
+        return true;
+      }
+    });
+
+    if (index !== -1) {
+      contactsCopy[index] = updatedContact;
+    }
+
+    setContacts(contactsCopy);
+
+    alert(`Contact successfully updated. After clicking OK, look for the contact of the "${updatedContact.personName}" in the table below to see the updates.`);
+  }
 }
 
-  // function onContactUpdated(updatedContact) {
-  //   setContactCurrentlyBeingUpdated(null);
-
-  //   if (updatedContact === null) {
-  //     return;
-  //   }
-
-  //   let contactsCopy = [...contacts];
-
-  //   const index = contactsCopy.findIndex((contactsCopyPost, currentIndex) => {
-  //     if (contactsCopyPost.postId === updatedContact.contactId) {
-  //       return true;
-  //     }
-  //   });
-
-  //   if (index !== -1) {
-  //     contactsCopy[index] = updatedContacts;
-  //   }
-
-  //   setContacts(contactsCopy);
-
-  //   alert(`Contact successfully updated. After clicking OK, look for the contact of the "${updatedContact.Name}" in the table below to see the updates.`);
-  // }
 
   // function onContactDeleted(deletedContactId) {
   //   let postsCopy = [...posts];

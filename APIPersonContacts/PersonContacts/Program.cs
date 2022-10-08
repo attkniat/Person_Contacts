@@ -65,7 +65,7 @@ app.MapPost("/create-contact", async (Contact contactToCreate) =>
 
 }).WithTags("Create a Contact");
 
-app.MapPut("/edit-contact", async (Contact contactToUpdate) =>
+app.MapPut("/update-contact", async (Contact contactToUpdate) =>
 {
     bool updateSuccess = await ContactsRepository.UpdateContactAsync(contactToUpdate);
 
