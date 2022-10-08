@@ -1,5 +1,6 @@
 using Microsoft.OpenApi.Models;
-using PersonContacts.Data;
+using PersonContacts.Model;
+using PersonContacts.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(options =>
@@ -42,7 +43,7 @@ app.UseHttpsRedirection();
 
 app.MapGet("/get-all-contacts", async () => await ContactsRepository.GetContactsAsync()).WithTags("Get All Contacts");
 
-app.MapGet("/get-contact-by-id/{ContactId}", async (int contactId) =>
+app.MapGet("/get-contact-by-id/{contactId}", async (int contactId) =>
 {
     Contact contact = await ContactsRepository.GetContactByIdAsync(contactId);
 
