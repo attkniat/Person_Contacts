@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace PersonContacts.Data
+namespace PersonContacts.Context
 {
     internal sealed class AppDBContext : DbContext
     {

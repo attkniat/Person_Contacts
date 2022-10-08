@@ -40,7 +40,7 @@ if (app.Environment.IsDevelopment())
 app.UseCors("CORSPolicy");
 app.UseHttpsRedirection();
 
-app.MapGet("/get-all-contacts", async () => await ContactsRepository.GetContactsAsync()).WithTags("Get Contacts");
+app.MapGet("/get-all-contacts", async () => await ContactsRepository.GetContactsAsync()).WithTags("Get All Contacts");
 
 app.MapGet("/get-contact-by-id/{ContactId}", async (int contactId) =>
 {

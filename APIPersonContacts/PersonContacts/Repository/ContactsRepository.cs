@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PersonContacts.Data;
 
-namespace PersonContacts.Data
+namespace PersonContacts.Repository
 {
     internal class ContactsRepository
     {
