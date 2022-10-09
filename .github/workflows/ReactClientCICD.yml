@@ -3,14 +3,14 @@ name: ReactClientCICD
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - 'my-app/**'
       - '.github/workflows/**'
   pull_request:
     types: [opened, synchronize, reopened, closed]
     branches:
-      - master
+      - main
 
 jobs:
   build_and_deploy_job:
