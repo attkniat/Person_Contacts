@@ -41,29 +41,7 @@ export default function App() {
         alert(error);
       });
   }
-
-  return (
-    <div className='container'>
-      <div className='row min-vh-100'>
-        <div className="col d-flex flex-column justify-content-center align-items-center">
-          {(showingCreateNewContactForm === false && contactCurrentlyBeingUpdated === null) && (
-            <div>
-              <h1>React Contacts Crud</h1>
-              <div className="mt-5">
-                <button onClick={getContacts} className='btn btn-dark btn-lg w-100'>Get all Contacts</button>
-                <button onClick={() => setShowingCreateNewContactForm(true)} className="btn btn-secondary btn-lg w-100 mt-4">New Contact</button>
-              </div>
-            </div>
-          )}
-
-          {(contacts.length > 0 && showingCreateNewContactForm === false && contactCurrentlyBeingUpdated === null) && renderContactsTable()}
-          {showingCreateNewContactForm && <ContactCreateForm onContactCreated={onContactCreated} />}
-          {contactCurrentlyBeingUpdated !== null && <ContactUpdateForm contact={contactCurrentlyBeingUpdated} onContactUpdated={onContactUpdated} />}
-        </div>
-      </div>
-    </div>
-  );
-
+  
   function renderContactsTable() {
     return (
       <div className="table-responsive mt-5">
@@ -151,4 +129,26 @@ export default function App() {
   
     alert('Contact successfully deleted. After clicking OK, look at the table below to see your contact disappear.');
   }
+
+  return (
+    <div className='container'>
+      <div className='row min-vh-100'>
+        <div className="col d-flex flex-column justify-content-center align-items-center">
+          {(showingCreateNewContactForm === false && contactCurrentlyBeingUpdated === null) && (
+            <div>
+              <h1>React Contacts Crud</h1>
+              <div className="mt-5">
+                <button onClick={getContacts} className='btn btn-dark btn-lg w-100'>Get all Contacts</button>
+                <button onClick={() => setShowingCreateNewContactForm(true)} className="btn btn-secondary btn-lg w-100 mt-4">New Contact</button>
+              </div>
+            </div>
+          )}
+  
+          {(contacts.length > 0 && showingCreateNewContactForm === false && contactCurrentlyBeingUpdated === null) && renderContactsTable()}
+          {showingCreateNewContactForm && <ContactCreateForm onContactCreated={onContactCreated} />}
+          {contactCurrentlyBeingUpdated !== null && <ContactUpdateForm contact={contactCurrentlyBeingUpdated} onContactUpdated={onContactUpdated} />}
+        </div>
+      </div>
+    </div>
+  );
 }
