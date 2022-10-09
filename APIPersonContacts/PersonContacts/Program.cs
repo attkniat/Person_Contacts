@@ -12,7 +12,7 @@ builder.Services.AddCors(options =>
             .AllowAnyMethod()
             .AllowAnyHeader()
             //.WithOrigins("http://localhost:3000", "https://wonderful-smoke-0e728aa0f.2.azurestaticapps.net/");
-            .WithOrigins("http://localhost:3000", "https://poetic-starburst-03ffd1.netlify.app/");
+            .WithOrigins("http://localhost:3000", "https://poetic-starburst-03ffd1.netlify.app");
         });
 });
 
