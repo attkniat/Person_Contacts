@@ -1,5 +1,5 @@
 const API_BASE_URL_DEVELOPMENT = 'https://localhost:7168';
-const API_BASE_URL_PRODUCTION = '';
+const API_BASE_URL_PRODUCTION = 'https://personcontactsaspnetcorereact.azurewebsites.net';
 
 const ENDPOINTS = {
     GET_ALL_CONTACTS: 'get-all-contacts',
