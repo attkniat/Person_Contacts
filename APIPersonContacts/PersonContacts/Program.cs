@@ -26,17 +26,14 @@ builder.Services.AddSwaggerGen(swaggerGenOptions =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+app.UseSwagger();
+app.UseSwaggerUI(swaggerUIOptions =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(swaggerUIOptions =>
-    {
-        swaggerUIOptions.DocumentTitle = "ASP.NET Minimal API Contacts CRUD";
-        swaggerUIOptions.SwaggerEndpoint("swagger/v1/swagger.json", "ASP.NET Minimal API Contacts CRUD");
-        swaggerUIOptions.RoutePrefix = string.Empty;
-    });
-}
+    swaggerUIOptions.DocumentTitle = "ASP.NET Minimal API Contacts CRUD";
+    swaggerUIOptions.SwaggerEndpoint("swagger/v1/swagger.json", "ASP.NET Minimal API Contacts CRUD");
+    swaggerUIOptions.RoutePrefix = string.Empty;
+});
+
 
 app.UseCors("CORSPolicy");
 app.UseHttpsRedirection();
