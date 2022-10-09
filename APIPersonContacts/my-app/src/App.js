@@ -13,7 +13,10 @@ export default function App() {
     const url = Constants.API_URL_GET_ALL_CONTACTS;
 
     fetch(url, {
-      method: 'GET'
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json'
+      },
     })
       .then(response => response.json())
       .then(contactsFromServer => {
@@ -27,7 +30,7 @@ export default function App() {
 
   function deleteContact(contactId) {
     const url = `${Constants.API_URL_DELETE_CONTACT_BY_ID}/${contactId}`;
-  debugger;
+    debugger;
     fetch(url, {
       method: 'DELETE'
     })
@@ -41,7 +44,7 @@ export default function App() {
         alert(error);
       });
   }
-  
+
   function renderContactsTable() {
     return (
       <div className="table-responsive mt-5">
@@ -114,19 +117,19 @@ export default function App() {
 
   function onContactDeleted(deletedContactId) {
     let contractCopy = [...contacts];
-  
+
     const index = contractCopy.findIndex((contactsCopyConts, currentIndex) => {
       if (contactsCopyConts.postId === deletedContactId) {
         return true;
       }
     });
-  
+
     if (index !== -1) {
       contractCopy.splice(index, 1);
     }
-  
+
     setContacts(contractCopy);
-  
+
     alert('Contact successfully deleted. After clicking OK, look at the table below to see your contact disappear.');
   }
 
@@ -143,7 +146,7 @@ export default function App() {
               </div>
             </div>
           )}
-  
+
           {(contacts.length > 0 && showingCreateNewContactForm === false && contactCurrentlyBeingUpdated === null) && renderContactsTable()}
           {showingCreateNewContactForm && <ContactCreateForm onContactCreated={onContactCreated} />}
           {contactCurrentlyBeingUpdated !== null && <ContactUpdateForm contact={contactCurrentlyBeingUpdated} onContactUpdated={onContactUpdated} />}
